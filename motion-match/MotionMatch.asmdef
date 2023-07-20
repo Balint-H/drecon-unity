@@ -1,9 +1,7 @@
 {
     "name": "MotionMatch",
     "rootNamespace": "MotionMatch",
-    "references": [
-        ""
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": true,

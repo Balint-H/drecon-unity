@@ -18,21 +18,21 @@ public static class Damper
     {
         float c1 = startValue - targetVal;
         float c2 = startDerivative - c1 * eigenv;
-        return sampleTimes.Select( t => targetVal + (c1 + c2 * t) * (float)System.Math.Exp((eigenv * t)));
+        return sampleTimes.Select( t => targetVal + (c1 + c2 * t) * Mathf.Exp((eigenv * t)));
     }
 
     public static float DampedDerivative(float startValue, float targetVal, float startDerivative, float sampleTime, float eigenv)
     {
         float c1 = startValue - targetVal;
         float c2 = startDerivative - c1 * eigenv;
-        return (startDerivative + c2*eigenv*sampleTime) * (float)System.Math.Exp((eigenv * sampleTime));
+        return (startDerivative + c2*eigenv*sampleTime) * Mathf.Exp((eigenv * sampleTime));
     }
 
     public static IEnumerable<float> DampedDerivative(float startValue, float targetVal, float startDerivative, IEnumerable<float> sampleTimes, float eigenv)
     {
         float c1 = startValue - targetVal;
         float c2 = startDerivative - c1 * eigenv;
-        return sampleTimes.Select(t => (startDerivative + c2 * eigenv * t) * (float)System.Math.Exp((eigenv * t)));
+        return sampleTimes.Select(t => (startDerivative + c2 * eigenv * t) * Mathf.Exp((eigenv * t)));
     }
 
 
@@ -47,7 +47,7 @@ public static class Damper
     {
         Vector2 c1 = startValue - targetVal;
         Vector2 c2 = startDerivative - c1 * eigenv;
-        return sampleTimes.Select(t => targetVal + (c1 + c2 * t) * (float)System.Math.Exp((eigenv * t)));
+        return sampleTimes.Select(t => targetVal + (c1 + c2 * t) * Mathf.Exp((eigenv * t)));
     }
 
 
@@ -55,14 +55,14 @@ public static class Damper
     {
         Vector2 c1 = startValue - targetVal;
         Vector2 c2 = startDerivative - c1 * eigenv;
-        return (startDerivative + c2 * eigenv * sampleTime) * (float)System.Math.Exp((eigenv * sampleTime));
+        return (startDerivative + c2 * eigenv * sampleTime) * Mathf.Exp((eigenv * sampleTime));
     }
 
     public static IEnumerable<Vector2> DampedVectorDerivative(Vector2 startValue, Vector2 targetVal, Vector2 startDerivative, IEnumerable<float> sampleTimes, float eigenv)
     {
         Vector2 c1 = startValue - targetVal;
         Vector2 c2 = startDerivative - c1 * eigenv;
-        return sampleTimes.Select(t => (startDerivative + c2 * eigenv * t) * (float)System.Math.Exp((eigenv * t)));
+        return sampleTimes.Select(t => (startDerivative + c2 * eigenv * t) * Mathf.Exp((eigenv * t)));
     }
 
 

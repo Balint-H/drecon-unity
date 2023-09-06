@@ -20,6 +20,6 @@ MonoBehaviour:
       freq: 30
       ranges:
       - start: 75
-        stop: 7800
+        stop: 7750
   nDimensions: 27
   nTrajectoryPoints: 3

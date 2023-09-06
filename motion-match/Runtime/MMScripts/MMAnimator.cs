@@ -34,6 +34,11 @@ public struct MMAnimator
         {
 			(AnimationClip clip, int idx) = tup;
 			AnimationClipPlayable clipPlayable = AnimationClipPlayable.Create(Graph, clip);
+			if (idx == sourceClips.Count - 1)
+			{
+				clipPlayable.SetApplyPlayableIK(false);
+				clipPlayable.SetApplyFootIK(false);  // For the Idle animation
+			}
 			clipPlayable.Pause();
 			Mixer.ConnectInput(idx, clipPlayable, 0);
 		}

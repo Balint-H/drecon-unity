@@ -95,7 +95,7 @@ public class MotionMatcher
     public float[] GetClipFeaturesAtFrame(MMFrame sourceFrame)
     {
         int idx = timeIndexConverter.ConvertFrameToIdx(sourceFrame);
-
+        if (idx >= normalizedTemporalMetadata.Length) Debug.Log(idx);
         return normalizedTemporalMetadata[idx];
     }
 
@@ -200,7 +200,7 @@ public class MotionMatcher
                     result += Ranges[i].length;
                 }
                 if (result < 0) result = 0;
-                if (result > FrameCount) result = FrameCount;
+                if (result >= FrameCount) result = FrameCount-1;
                 return ClipOffset + result;
             }
 

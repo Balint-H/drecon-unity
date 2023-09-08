@@ -13,6 +13,9 @@ public class MjTiltHandler : TrainingEventHandler
     [SerializeField]
     float maxTiltDegree;
 
+    [SerializeField]
+    float minTiltDegree;
+
 
 
     public override EventHandler Handler => (_,_) => MjState.ExecuteAfterMjStart(Tilt);
@@ -20,7 +23,7 @@ public class MjTiltHandler : TrainingEventHandler
 
     unsafe void Tilt()
     {
-        var degrees = UnityEngine.Random.Range(0, maxTiltDegree);
+        var degrees = UnityEngine.Random.Range(minTiltDegree, maxTiltDegree);
         Quaternion rotateQuat = Quaternion.RotateTowards(Quaternion.identity, UnityEngine.Random.rotation, degrees);
         var oldQpos = tiltedJoint.GetQPos();
         Quaternion oldQuat = new Quaternion(w: -oldQpos[3], x: oldQpos[4], y: oldQpos[6], z: oldQpos[5]);

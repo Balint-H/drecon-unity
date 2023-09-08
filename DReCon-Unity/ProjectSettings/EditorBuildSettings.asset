@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DReCon - Artanim.unity
-    guid: e6964387b8e71b548af1fabea3668746
+    path: Assets/Scenes/DReCon - Artanim/DReCon - Artanim - Projectile.unity
+    guid: e1787be6673401e48ba21676d5be75c9
   m_configObjects: {}

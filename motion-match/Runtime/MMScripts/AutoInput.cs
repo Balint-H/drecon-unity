@@ -11,7 +11,7 @@ public class AutoInput : DampedTrajectoryInput
     protected List<Transform> landmarks;
 
     [SerializeField]
-    protected LandmarkSelection landmarkSelectionMode; 
+    protected LandmarkSelection landmarkSelectionMode;
 
     protected int landmarkIdx;
     protected Vector3 hitPoint;
@@ -35,7 +35,7 @@ public class AutoInput : DampedTrajectoryInput
     [SerializeField]
     bool projectDownForDistance;
 
-    public  bool TargetIsActive
+    public bool TargetIsActive
     {
         get => targetIsActive;
         set
@@ -62,8 +62,8 @@ public class AutoInput : DampedTrajectoryInput
                         StartCoroutine(SetNewTarget(waitTime));
                     }
 
-                    
-                   
+
+
                 }
             }
 
@@ -92,7 +92,7 @@ public class AutoInput : DampedTrajectoryInput
     {
         if (TargetIsActive)
         {
-            Vector3 differenceVector = projectDownForDistance? fauxRootInWorld.position.Horizontal3D() - hitPoint : fauxRootInWorld.position - hitPoint;
+            Vector3 differenceVector = projectDownForDistance ? fauxRootInWorld.position.Horizontal3D() - hitPoint : fauxRootInWorld.position - hitPoint;
             if (differenceVector.magnitude < targetDistance)
             {
                 analogueDirection = Vector2.zero;
@@ -109,7 +109,7 @@ public class AutoInput : DampedTrajectoryInput
 
     private Vector3 GetNextPoint()
     {
-        switch(landmarkSelectionMode)
+        switch (landmarkSelectionMode)
         {
             case LandmarkSelection.Random: return GetRandomPoint();
             case LandmarkSelection.OrderedLandmark: return GetNextLandmark();
@@ -135,7 +135,14 @@ public class AutoInput : DampedTrajectoryInput
         landmarkIdx = -1;
         var bb = GeometryUtility.CalculateBounds(landmarks.Select(t => t.position).ToArray(), Matrix4x4.identity);
         var newPoint = new Vector3(Random.Range(bb.min.x, bb.max.x), Random.Range(bb.min.y, bb.max.y), Random.Range(bb.min.z, bb.max.z));
-        return (fauxRootInWorld.position.Horizontal3D() + new Vector3(0, newPoint.y, 0) - newPoint).magnitude > distThreshold? newPoint : GetRandomPoint();
+        return (fauxRootInWorld.position.Horizontal3D() + new Vector3(0, newPoint.y, 0) - newPoint).magnitude > distThreshold ? newPoint : GetRandomPoint();
+    }
+
+    public void SetHitPoint(Vector3 pos)
+    {
+        hitPoint = pos;
+        targetIsActive = false;
+        TargetIsActive = true;
     }
 
 

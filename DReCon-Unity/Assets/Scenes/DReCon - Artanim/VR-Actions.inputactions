@@ -66,12 +66,21 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "PointerVis",
                     "type": "Value",
                     "id": "72aa259b-f5f6-4604-a152-8870f2ed724d",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "DragPos",
+                    "type": "Value",
+                    "id": "b136d69c-03ad-40be-ad70-f4db1fe3e840",
                     "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "",
@@ -159,7 +168,7 @@
                 {
                     "name": "",
                     "id": "83faaebf-5699-4c7a-94c8-39a88fd1e002",
-                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "path": "<XRController>{LeftHand}/triggerButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -175,6 +184,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PointerVis",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e25ebe9-5e5a-448d-b60f-9366276feeb2",
+                    "path": "<XRController>{LeftHand}/grip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DragPos",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

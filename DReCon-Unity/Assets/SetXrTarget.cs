@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit.Utilities.Tweenables.Primitives;
@@ -26,11 +27,24 @@ public class SetXrTarget : TrainingEvent
     Vector3 pointerPosition;
     Quaternion pointerRotation;
 
+    float gripState;
+
 
     private void LateUpdate()
     {
         pointerTransform.position = pointerPosition;
         pointerTransform.rotation = pointerRotation;
+
+        if(gripState > 0.95f)
+        {
+            OnTrainingEvent(EventArgs.Empty);
+            Ray ray = new Ray(pointerTransform.position, pointerTransform.forward);
+            Plane ground = new Plane(Vector3.up, Vector3.zero);
+            if (ground.Raycast(ray, out float enter))
+            {
+                input.SetHitPoint(ray.GetPoint(enter));
+            }
+        }
     }
 
 
@@ -39,11 +53,15 @@ public class SetXrTarget : TrainingEvent
         OnTrainingEvent(EventArgs.Empty);
         Ray ray = new Ray(pointerTransform.position, pointerTransform.forward);
         Plane ground = new Plane(Vector3.up, Vector3.zero);
-        if(ground.Raycast(ray, out float enter))
+        if (ground.Raycast(ray, out float enter))
         {
             input.SetHitPoint(ray.GetPoint(enter));
         }
-       
+    }
+
+    private void OnDragPos(InputValue grip)
+    {
+        gripState = grip.Get<float>();
     }
 
     private void OnMovePointer(InputValue pos)
